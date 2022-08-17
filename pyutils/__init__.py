@@ -1,19 +1,9 @@
-# type: ignore[attr-defined]
-"""pyutils is wrapper python base class for usability."""
-
-import sys
-
-if sys.version_info >= (3, 8):
-    from importlib import metadata as importlib_metadata
-else:
-    import importlib_metadata
-
-
-def get_version() -> str:
-    try:
-        return importlib_metadata.version(__name__)
-    except importlib_metadata.PackageNotFoundError:  # pragma: no cover
-        return "unknown"
-
-
-version: str = get_version()
+from pyutils import databaser
+from pyutils import datetimer
+from pyutils import dictor
+from pyutils import globber
+from pyutils import lister
+from pyutils import metaer
+from pyutils import moduler
+from pyutils import pather
+from pyutils import singleton
