@@ -1,4 +1,5 @@
 import pytest
+
 from pyutils.databaser import make_url
 from pyutils.dictor import generate_dict
 

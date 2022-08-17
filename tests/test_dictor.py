@@ -1,5 +1,6 @@
-from pyutils.dictor import generate_dict
 import pytest
+
+from pyutils.dictor import generate_dict
 
 base_dict = {
     "user": "postgres",

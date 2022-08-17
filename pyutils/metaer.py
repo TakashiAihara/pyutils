@@ -1,7 +1,7 @@
 from typing import Any, Type
 
 
-def class_attributes(cls: Type[Any] | object) -> list[str]:
+def class_attributes(cls: type[Any] | object) -> list[str]:
     return [
         attr
         for attr in dir(cls)

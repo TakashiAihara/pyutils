@@ -1,5 +1,6 @@
-from pyutils.globber import glob
 from pytest_mock.plugin import MockerFixture
+
+from pyutils.globber import glob
 
 base_file_list = [
     "test/test/03_test.py",

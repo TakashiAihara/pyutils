@@ -3,7 +3,7 @@ from pyutils.metaer import class_attributes
 expected = ["bool143", "bool2", "blah", "foo", "foobar2000"]
 
 
-class Example(object):
+class Example:
     bool143 = True
     bool2 = True
     blah = False

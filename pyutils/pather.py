@@ -1,4 +1,5 @@
-from os.path import splitext, sep
+from os.path import sep, splitext
+
 from git.repo.base import Repo
 
 

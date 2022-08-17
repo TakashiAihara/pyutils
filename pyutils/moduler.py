@@ -1,7 +1,9 @@
 from types import ModuleType
-from typing import Iterable
-from pyutils.pather import convert_module_format
+
+from collections.abc import Iterable
 from importlib import import_module as im
+
+from pyutils.pather import convert_module_format
 
 
 def import_module(path: str) -> ModuleType:
