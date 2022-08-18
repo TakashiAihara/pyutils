@@ -7,5 +7,6 @@ from pyutils import (
     metaer,
     moduler,
     pather,
+    rer,
     singleton,
 )
