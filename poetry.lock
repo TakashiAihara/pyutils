@@ -33,6 +33,18 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "mypy (>=0.900,!=0.940)", "pytest-mypy-plugins", "cloudpickle"]
 
 [[package]]
+name = "autopep8"
+version = "1.7.0"
+description = "A tool that automatically formats Python code to conform to the PEP 8 style guide"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pycodestyle = ">=2.9.1"
+toml = "*"
+
+[[package]]
 name = "bandit"
 version = "1.7.4"
 description = "Security oriented static analyser for python code."
@@ -195,8 +207,21 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2022.6.21)", "sphinx (>=5.1.1)", "sphinx-autodoc-typehints (>=1.19.1)"]
-testing = ["covdefaults (>=2.2)", "coverage (>=6.4.2)", "pytest (>=7.1.2)", "pytest-cov (>=3)", "pytest-timeout (>=2.1)"]
+testing = ["pytest-timeout (>=2.1)", "pytest-cov (>=3)", "pytest (>=7.1.2)", "coverage (>=6.4.2)", "covdefaults (>=2.2)"]
+docs = ["sphinx-autodoc-typehints (>=1.19.1)", "sphinx (>=5.1.1)", "furo (>=2022.6.21)"]
+
+[[package]]
+name = "flake8"
+version = "5.0.4"
+description = "the modular source code checker: pep8 pyflakes and co"
+category = "dev"
+optional = false
+python-versions = ">=3.6.1"
+
+[package.dependencies]
+mccabe = ">=0.7.0,<0.8.0"
+pycodestyle = ">=2.9.0,<2.10.0"
+pyflakes = ">=2.5.0,<2.6.0"
 
 [[package]]
 name = "gitdb"
@@ -390,6 +415,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "pycodestyle"
+version = "2.9.1"
+description = "Python style guide checker"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "pydocstyle"
 version = "6.1.1"
 description = "Python docstring style checker"
@@ -402,6 +435,14 @@ snowballstemmer = "*"
 
 [package.extras]
 toml = ["toml"]
+
+[[package]]
+name = "pyflakes"
+version = "2.5.0"
+description = "passive checker of Python programs"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "pylint"
@@ -507,7 +548,7 @@ python-versions = ">=3.7"
 pytest = ">=5.0"
 
 [package.extras]
-dev = ["pre-commit", "tox", "pytest-asyncio"]
+dev = ["pytest-asyncio", "tox", "pre-commit"]
 
 [[package]]
 name = "python-dotenv"
@@ -596,6 +637,14 @@ requests = "*"
 "ruamel.yaml" = ">=0.17.21"
 
 [[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
 name = "smmap"
 version = "5.0.0"
 description = "A pure Python implementation of a sliding window memory map manager"
@@ -655,6 +704,28 @@ optional = false
 python-versions = ">=3.6,<4.0"
 
 [[package]]
+name = "tox"
+version = "3.25.1"
+description = "tox is a generic virtualenv management and test command line tool"
+category = "dev"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
+
+[package.dependencies]
+colorama = {version = ">=0.4.1", markers = "platform_system == \"Windows\""}
+filelock = ">=3.0.0"
+packaging = ">=14"
+pluggy = ">=0.12.0"
+py = ">=1.4.17"
+six = ">=1.14.0"
+toml = ">=0.9.4"
+virtualenv = ">=16.0.0,<20.0.0 || >20.0.0,<20.0.1 || >20.0.1,<20.0.2 || >20.0.2,<20.0.3 || >20.0.3,<20.0.4 || >20.0.4,<20.0.5 || >20.0.5,<20.0.6 || >20.0.6,<20.0.7 || >20.0.7"
+
+[package.extras]
+docs = ["pygments-github-lexers (>=0.0.5)", "sphinx (>=2.0.0)", "sphinxcontrib-autoprogram (>=0.1.5)", "towncrier (>=18.5.0)"]
+testing = ["flaky (>=3.4.0)", "freezegun (>=0.3.11)", "pytest (>=4.0.0)", "pytest-cov (>=2.5.1)", "pytest-mock (>=1.10.0)", "pytest-randomly (>=1.0.0)", "psutil (>=5.6.1)", "pathlib2 (>=2.3.3)"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.3.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -703,7 +774,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "dbb405ed8118fad781d720be6599801f98a4de83ab51979fe28928d77fa08eea"
+content-hash = "62bdf246ca199fb26471bc0aac6692b3ed01e94ac8bb7161235b0325e09debb6"
 
 [metadata.files]
 astroid = [
@@ -716,6 +787,10 @@ atomicwrites = [
 attrs = [
     {file = "attrs-22.1.0-py2.py3-none-any.whl", hash = "sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c"},
     {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
+]
+autopep8 = [
+    {file = "autopep8-1.7.0-py2.py3-none-any.whl", hash = "sha256:6f09e90a2be784317e84dc1add17ebfc7abe3924239957a37e5040e27d812087"},
+    {file = "autopep8-1.7.0.tar.gz", hash = "sha256:ca9b1a83e53a7fad65d731dc7a2a2d50aa48f43850407c59f6a1a306c4201142"},
 ]
 bandit = [
     {file = "bandit-1.7.4-py3-none-any.whl", hash = "sha256:412d3f259dab4077d0e7f0c11f50f650cc7d10db905d98f6520a95a18049658a"},
@@ -841,6 +916,10 @@ dparse = [
 filelock = [
     {file = "filelock-3.8.0-py3-none-any.whl", hash = "sha256:617eb4e5eedc82fc5f47b6d61e4d11cb837c56cb4544e39081099fa17ad109d4"},
     {file = "filelock-3.8.0.tar.gz", hash = "sha256:55447caa666f2198c5b6b13a26d2084d26fa5b115c00d065664b2124680c4edc"},
+]
+flake8 = [
+    {file = "flake8-5.0.4-py2.py3-none-any.whl", hash = "sha256:7a1cf6b73744f5806ab95e526f6f0d8c01c66d7bbe349562d22dfca20610b248"},
+    {file = "flake8-5.0.4.tar.gz", hash = "sha256:6fbe320aad8d6b95cec8b8e47bc933004678dc63095be98528b7bdd2a9f510db"},
 ]
 gitdb = [
     {file = "gitdb-4.0.9-py3-none-any.whl", hash = "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd"},
@@ -970,9 +1049,17 @@ py = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
 ]
+pycodestyle = [
+    {file = "pycodestyle-2.9.1-py2.py3-none-any.whl", hash = "sha256:d1735fc58b418fd7c5f658d28d943854f8a849b01a5d0a1e6f3f3fdd0166804b"},
+    {file = "pycodestyle-2.9.1.tar.gz", hash = "sha256:2c9607871d58c76354b697b42f5d57e1ada7d261c261efac224b664affdc5785"},
+]
 pydocstyle = [
     {file = "pydocstyle-6.1.1-py3-none-any.whl", hash = "sha256:6987826d6775056839940041beef5c08cc7e3d71d63149b48e36727f70144dc4"},
     {file = "pydocstyle-6.1.1.tar.gz", hash = "sha256:1d41b7c459ba0ee6c345f2eb9ae827cab14a7533a88c5c6f7e94923f72df92dc"},
+]
+pyflakes = [
+    {file = "pyflakes-2.5.0-py2.py3-none-any.whl", hash = "sha256:4579f67d887f804e67edb544428f264b7b24f435b263c4614f384135cea553d2"},
+    {file = "pyflakes-2.5.0.tar.gz", hash = "sha256:491feb020dca48ccc562a8c0cbe8df07ee13078df59813b83959cbdada312ea3"},
 ]
 pylint = [
     {file = "pylint-2.14.5-py3-none-any.whl", hash = "sha256:fabe30000de7d07636d2e82c9a518ad5ad7908590fe135ace169b44839c15f90"},
@@ -1055,7 +1142,6 @@ requests = [
 ]
 "ruamel.yaml.clib" = [
     {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:6e7be2c5bcb297f5b82fee9c665eb2eb7001d1050deaba8471842979293a80b0"},
-    {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:066f886bc90cc2ce44df8b5f7acfc6a7e2b2e672713f027136464492b0c34d7c"},
     {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl", hash = "sha256:221eca6f35076c6ae472a531afa1c223b9c29377e62936f61bc8e6e8bdc5f9e7"},
     {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-win32.whl", hash = "sha256:1070ba9dd7f9370d0513d649420c3b362ac2d687fe78c6e888f5b12bf8bc7bee"},
     {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-win_amd64.whl", hash = "sha256:77df077d32921ad46f34816a9a16e6356d8100374579bc35e15bab5d4e9377de"},
@@ -1065,22 +1151,18 @@ requests = [
     {file = "ruamel.yaml.clib-0.2.6-cp35-cp35m-win_amd64.whl", hash = "sha256:de9c6b8a1ba52919ae919f3ae96abb72b994dd0350226e28f3686cb4f142165c"},
     {file = "ruamel.yaml.clib-0.2.6-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:d67f273097c368265a7b81e152e07fb90ed395df6e552b9fa858c6d2c9f42502"},
     {file = "ruamel.yaml.clib-0.2.6-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:72a2b8b2ff0a627496aad76f37a652bcef400fd861721744201ef1b45199ab78"},
-    {file = "ruamel.yaml.clib-0.2.6-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:d3c620a54748a3d4cf0bcfe623e388407c8e85a4b06b8188e126302bcab93ea8"},
     {file = "ruamel.yaml.clib-0.2.6-cp36-cp36m-win32.whl", hash = "sha256:9efef4aab5353387b07f6b22ace0867032b900d8e91674b5d8ea9150db5cae94"},
     {file = "ruamel.yaml.clib-0.2.6-cp36-cp36m-win_amd64.whl", hash = "sha256:846fc8336443106fe23f9b6d6b8c14a53d38cef9a375149d61f99d78782ea468"},
     {file = "ruamel.yaml.clib-0.2.6-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:0847201b767447fc33b9c235780d3aa90357d20dd6108b92be544427bea197dd"},
     {file = "ruamel.yaml.clib-0.2.6-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:78988ed190206672da0f5d50c61afef8f67daa718d614377dcd5e3ed85ab4a99"},
-    {file = "ruamel.yaml.clib-0.2.6-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:210c8fcfeff90514b7133010bf14e3bad652c8efde6b20e00c43854bf94fa5a6"},
     {file = "ruamel.yaml.clib-0.2.6-cp37-cp37m-win32.whl", hash = "sha256:a49e0161897901d1ac9c4a79984b8410f450565bbad64dbfcbf76152743a0cdb"},
     {file = "ruamel.yaml.clib-0.2.6-cp37-cp37m-win_amd64.whl", hash = "sha256:bf75d28fa071645c529b5474a550a44686821decebdd00e21127ef1fd566eabe"},
     {file = "ruamel.yaml.clib-0.2.6-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:a32f8d81ea0c6173ab1b3da956869114cae53ba1e9f72374032e33ba3118c233"},
     {file = "ruamel.yaml.clib-0.2.6-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:7f7ecb53ae6848f959db6ae93bdff1740e651809780822270eab111500842a84"},
-    {file = "ruamel.yaml.clib-0.2.6-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:61bc5e5ca632d95925907c569daa559ea194a4d16084ba86084be98ab1cec1c6"},
     {file = "ruamel.yaml.clib-0.2.6-cp38-cp38-win32.whl", hash = "sha256:89221ec6d6026f8ae859c09b9718799fea22c0e8da8b766b0b2c9a9ba2db326b"},
     {file = "ruamel.yaml.clib-0.2.6-cp38-cp38-win_amd64.whl", hash = "sha256:31ea73e564a7b5fbbe8188ab8b334393e06d997914a4e184975348f204790277"},
     {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:dc6a613d6c74eef5a14a214d433d06291526145431c3b964f5e16529b1842bed"},
     {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:1866cf2c284a03b9524a5cc00daca56d80057c5ce3cdc86a52020f4c720856f0"},
-    {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:1b4139a6ffbca8ef60fdaf9b33dec05143ba746a6f0ae0f9d11d38239211d335"},
     {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-win32.whl", hash = "sha256:3fb9575a5acd13031c57a62cc7823e5d2ff8bc3835ba4d94b921b4e6ee664104"},
     {file = "ruamel.yaml.clib-0.2.6-cp39-cp39-win_amd64.whl", hash = "sha256:825d5fccef6da42f3c8eccd4281af399f21c02b32d98e113dbc631ea6a6ecbc7"},
     {file = "ruamel.yaml.clib-0.2.6.tar.gz", hash = "sha256:4ff604ce439abb20794f05613c374759ce10e3595d1867764dd1ae675b85acbd"},
@@ -1088,6 +1170,10 @@ requests = [
 safety = [
     {file = "safety-2.1.1-py3-none-any.whl", hash = "sha256:05ba551fb61ef24c864835d21089f75bc8b37292680047b9f29693a6552e2fc7"},
     {file = "safety-2.1.1.tar.gz", hash = "sha256:dbc5dffa2e47da76cc43dfe8cbbbfca99d29118d0c6c54dfcfa11c2bd349dff6"},
+]
+six = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 smmap = [
     {file = "smmap-5.0.0-py3-none-any.whl", hash = "sha256:2aba19d6a040e78d8b09de5c57e96207b09ed71d8e55ce0959eeee6c8e190d94"},
@@ -1116,6 +1202,10 @@ tomli = [
 tomlkit = [
     {file = "tomlkit-0.11.4-py3-none-any.whl", hash = "sha256:25d4e2e446c453be6360c67ddfb88838cfc42026322770ba13d1fbd403a93a5c"},
     {file = "tomlkit-0.11.4.tar.gz", hash = "sha256:3235a9010fae54323e727c3ac06fb720752fe6635b3426e379daec60fbd44a83"},
+]
+tox = [
+    {file = "tox-3.25.1-py2.py3-none-any.whl", hash = "sha256:c38e15f4733683a9cc0129fba078633e07eb0961f550a010ada879e95fb32632"},
+    {file = "tox-3.25.1.tar.gz", hash = "sha256:c138327815f53bc6da4fe56baec5f25f00622ae69ef3fe4e1e385720e22486f9"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.3.0-py3-none-any.whl", hash = "sha256:25642c956049920a5aa49edcdd6ab1e06d7e5d467fc00e0506c44ac86fbfca02"},
